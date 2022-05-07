@@ -13,53 +13,53 @@ const createAuthor = async (req, res) => {
     console.log(isPasswordValidate)
 
     if (!fname) {
-      res.status(401).send({error: "fname is missing"})
+      res.status(400).send({error: "fname is missing"})
     }
 
     if(!lname) {
-      res.status(401).send({error: "lname is missing"})
+      res.status(400).send({error: "lname is missing"})
     }
 
     if(!title) {
-      res.status(401).send({error: "title is not present"})
+      res.status(400).send({error: "title is not present"})
     }
 
     if(!email) {
-      res.status(401).send({error: "Email is not present"})
+      res.status(400).send({error: "Email is not present"})
     }
 
     if(!(title == "Mrs" || title == "Mr" || title == "Miss")) {
-             res.status(401).send({error : "title has to be Mr or Mrs or Miss "})
+             res.status(400).send({error : "title has to be Mr or Mrs or Miss "})
     }
 
     if(!password) {
-      res.status(401).send({error: "password is missing"})
+      res.status(400).send({error: "password is missing"})
     }
     
     if (isPasswordValidate === false) {
-      res.status(401).send({error : "password isn't validate, please make sure length is minimum 8, should have one uppercase and lowercase character and Number also and donot use space and have a special character"})
+      res.status(400).send({error : "password isn't validate, please make sure length is minimum 8, should have one uppercase and lowercase character and Number also and donot use space and have a special character"})
     }
 
     console.log(email)
     let isValidEmail = await validator.validate(email)
 
     if (!isValidEmail){
-      res.status(401).send({error: "email is not valid"})
+      res.status(400).send({error: "email is not valid"})
     }
 
     let isUniqueEmail = await authorModel.find({email:email })
     console.log(isUniqueEmail)
     
     if (isUniqueEmail[0]) {
-      res.status(401).send({error : "email already exists/ Not unique"})
+      res.status(400).send({error : "email already exists/ Not unique"})
     }
 
     let savedData = await authorModel.create(data)
     
     if (!savedData) {
-      res.status(401).send({ msg: 'auther not created' })
+      res.status(400).send({ msg: 'auther not created' })
     }
-    res.status(200).send({ msg: savedData })
+    res.status(201).send({ msg: savedData })
   } catch (err) {
     console.log(err.message)
     res.status(500).send({ error: err.message })
