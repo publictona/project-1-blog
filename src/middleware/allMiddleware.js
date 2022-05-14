@@ -17,7 +17,7 @@ const authentication = async function (req, res, next) {
 
 }
 
-const deleteandUpdateBlogById=async(req,res,next)=>{
+const deleteandUpdateBlogById = async(req,res,next)=>{
     let token = req.headers["x-api-key" || "X-Api-Key"]
     let decodedToken = jwt.verify(token,"functionup-uranium")
     let Id = req.params.blogsId

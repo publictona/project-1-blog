@@ -4,8 +4,13 @@ const blogController = require('../Controller/blogController')
 const authorController = require('../Controller/authorController')
 const middle = require('../middleware/allMiddleware')
 
+//author api route handler
 router.post('/authors', authorController.createAuthor)
 
+//author login route hanlder
+router.post('/login', authorController.loginUser )
+
+// blog api route handler
 router.post('/blogs', middle.authentication , blogController.createBlog)
 
 router.get('/getblogs',middle.authentication  ,blogController.getBlogs)
@@ -16,6 +21,6 @@ router.put('/deleteblogs/:blogsId', middle.authentication, middle.deleteandUpdat
 
 router.put('/delete', middle.authentication, middle.deleteBlogbyParams,  blogController.deleteByParams)
 
-router.post('/login', authorController.loginUser )
+
 
 module.exports = router

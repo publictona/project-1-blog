@@ -47,17 +47,15 @@ const createBlog = async function (req, res) {
   }
 }
 
-
+//----------------------------------------------------------get blog api---------------------------------------------------------------------------------//
 
 const getBlogs = async (req, res) => {
   try {
     let data = req.query
     
     console.log(data);
-   
 
-    let blog = await blogModel.find({ 
-      $and: [{isPublished: true}, {isDeleted: false}, data ]
+    let blog = await blogModel.find({ $and: [{isPublished: true}, {isDeleted: false}, data ]
     })
     
     if (!blog[0]) {
@@ -69,6 +67,8 @@ const getBlogs = async (req, res) => {
     res.status(500).send({ err: 'server not found' })
   }
 }
+
+//-------------------------------------------------------------- update blog api----------------------------------------------------------------//
 
 const updateBlog = async (req, res) => {
   try {
@@ -111,7 +111,7 @@ const updateBlog = async (req, res) => {
     res.status(500).send({ msg: err.message })
   }
 }
-
+//------------------------------------------------------------------delete blog using path params api------------------------------------------------------------//
 const deleteBlog = async (req, res) => {
   try {
     let Id = req.params.blogsId
@@ -134,7 +134,7 @@ const deleteBlog = async (req, res) => {
   }
 }
 
-
+//----------------------------------------------------------------- delete blog using query params api-----------------------------------------------
 const deleteByParams = async (req, res) => {
   try {
     let { authorsId, isPublished, tags, category, subcategory } = req.query
@@ -171,7 +171,7 @@ const deleteByParams = async (req, res) => {
   }
 }
 
-
+//-----------------------------------------------------exporting----------------------------------------------------------------------------
 module.exports.createBlog = createBlog
 module.exports.getBlogs = getBlogs
 module.exports.updateBlog = updateBlog

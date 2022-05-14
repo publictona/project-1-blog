@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 mongoose
   .connect(
-    'mongodb+srv://pattamu:iKHwECgQCaYNVpge@sandeepcluster.9rzkh.mongodb.net/SushmaLandge',
+    'mongodb+srv://Sushma123:oPRb0pySPR0iiGiz@cluster0.wp92b.mongodb.net/mongoosedb?authSource=admin&replicaSet=atlas-4x5pr3-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true',
     {
       useNewUrlParser: true,
     },
